@@ -2,7 +2,6 @@
 
 use Faker\Factory;
 use Faker\Generator;
-use Dotenv\Dotenv;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -19,10 +18,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
         // Initialise faker library
         $this->faker = Factory::create();
-
-        // Load test configuration
-//        $dotEnv = new Dotenv(__DIR__);
-//        $dotEnv->load();
     }
 
     /**
