@@ -10,6 +10,8 @@ class ProductsTest extends TestCase
         $theQuestionMarkEndpoint = new Client();
         $products = $theQuestionMarkEndpoint->getProducts();
 
-        $this->assertCount(20, $products);
+        $this->assertArrayHasKey('products', $products);
+        $this->assertArrayHasKey('total', $products);
+        $this->assertCount(20, $products[ 'products' ]);
     }
 }
