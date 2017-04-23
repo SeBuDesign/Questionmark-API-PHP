@@ -45,4 +45,21 @@ class ProductsTest extends TestCase
 
         $this->theQuestionmarkClient->getProduct(123);
     }
+
+    /** @test */
+    public function it_should_get_a_product_by_a_barcode()
+    {
+        $product = $this->theQuestionmarkClient->getProductByBarcode(288247);
+
+        $this->assertArrayHasKey('id', $product);
+        $this->assertEquals(288247, $product['id']);
+    }
+
+    /** @test */
+    public function it_should_throw_an_exception_when_a_product_by_a_barcode_is_not_found()
+    {
+        $this->expectException(ProductNotFoundException::class);
+
+        $this->theQuestionmarkClient->getProductByBarcode(123);
+    }
 }

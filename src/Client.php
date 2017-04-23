@@ -76,6 +76,20 @@ class Client
     }
 
     /**
+     * Retrieve a single product by a barcode
+     *
+     * @param integer | string $barcode The barcode of the product to retrieve
+     *
+     * @throws ProductNotFoundException
+     *
+     * @return array | null
+     */
+    public function getProductByBarcode($barcode)
+    {
+        return $this->getProduct($barcode);
+    }
+
+    /**
      * JSON decode the response and return it
      *
      * @param ResponseInterface $response The response of the API request
