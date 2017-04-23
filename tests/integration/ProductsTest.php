@@ -28,4 +28,13 @@ class ProductsTest extends TestCase
         $this->assertArrayHasKey('total', $products);
         $this->assertCount(40, $products[ 'products' ]);
     }
+
+    /** @test */
+    public function it_should_get_a_product_by_id()
+    {
+        $product = $this->theQuestionmarkClient->getProduct(123);
+
+        $this->assertArrayHasKey('id', $product);
+        $this->assertEquals(123, $product['id']);
+    }
 }
