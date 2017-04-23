@@ -1,6 +1,7 @@
 <?php namespace SeBuDesign\TheQuestionmark;
 
 use Psr\Http\Message\ResponseInterface;
+use SeBuDesign\TheQuestionmark\Exceptions\ProductNotFoundException;
 
 class Client
 {
@@ -19,7 +20,10 @@ class Client
         // Setup the HTTP client with a base url
         $this->httpClient = new \GuzzleHttp\Client(
             [
-                'base_uri' => 'https://api-c.thequestionmark.org/api/v1.1/'
+                'base_uri' => 'https://api-c.thequestionmark.org/api/v1.1/',
+                'headers' => [
+                    'Content-Type' => 'application/json'
+                ]
             ]
         );
     }
@@ -45,6 +49,30 @@ class Client
                 ]
             )
         );
+    }
+
+    /**
+     * Retrieve a single product by an id
+     *
+     * @param integer $id The product id to retrieve
+     *
+     * @throws ProductNotFoundException
+     *
+     * @return array | null
+     */
+    public function getProduct($id)
+    {
+        try {
+            $product = $this->formatResponse(
+                $this->httpClient->get(
+                    "products/{$id}" // URI endpoint
+                )
+            );
+        } catch (\Exception $exception) {
+            throw new ProductNotFoundException("Product not found", 404);
+        }
+
+        return $product;
     }
 
     /**
