@@ -1,14 +1,36 @@
 {
-    "name": "sebudesign/questionmark-api-php",
-    "description": "PHP package to connect to the API of The Questionmark",
-    "type": "library",
-    "license": "GNU",
-    "authors": [
-        {
-            "name": "Sven Buijsrogge",
-            "email": "sven@sebudesign.nl"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {}
+	"name": "sebudesign/questionmark-api-php",
+	"description": "PHP package to connect to the API of The Questionmark",
+	"keywords": ["PHP", "The Questionmark", "thequestionmark.org"],
+	"type": "library",
+	"license": "GNU",
+	"authors": [
+		{
+			"name": "Sven Buijsrogge",
+			"email": "sven@sebudesign.nl"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/SeBuDesign/Questionmark-API-PHP/issues",
+		"source": "https://github.com/SeBuDesign/Questionmark-API-PHP"
+	},
+	"minimum-stability": "stable",
+	"require": {
+		"php": ">=5.5.9",
+		"guzzlehttp/guzzle": "^6.2"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^6.0",
+		"fzaninotto/faker": "^1.6"
+	},
+	"autoload": {
+		"psr-4": {
+			"SeBuDesign\\TheQuestionmark\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"SeBuDesign\\TheQuestionmark\\Tests\\": "tests/"
+		}
+	}
 }
