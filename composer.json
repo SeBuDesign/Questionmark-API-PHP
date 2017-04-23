@@ -1,0 +1,14 @@
+{
+    "name": "sebudesign/questionmark-api-php",
+    "description": "PHP package to connect to the API of The Questionmark",
+    "type": "library",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Sven Buijsrogge",
+            "email": "sven@sebudesign.nl"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
