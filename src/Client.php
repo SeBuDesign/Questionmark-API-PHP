@@ -27,19 +27,21 @@ class Client
     /**
      * Get the products per 20 by default
      *
-     * @param integer $perPage The amount of products per page
+     * @param array $requestParameters The amount of products per page
      *
      * @return array | null
      */
-    public function getProducts($perPage = 20)
+    public function getProducts($requestParameters = [])
     {
+        if (!isset($requestParameters['per_page'])) {
+            $requestParameters['per_page'] = 20;
+        }
+
         return $this->formatResponse(
             $this->httpClient->get(
                 'products', // URI endpoint
                 [
-                    'query' => [
-                        'per_page' => $perPage
-                    ]
+                    'query' => $requestParameters
                 ]
             )
         );
