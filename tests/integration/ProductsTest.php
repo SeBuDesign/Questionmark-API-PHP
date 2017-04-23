@@ -4,6 +4,8 @@ use SeBuDesign\TheQuestionmark\Exceptions\ProductNotFoundException;
 
 class ProductsTest extends TestCase
 {
+    protected $productId = 288247;
+
     /** @test */
     public function it_should_get_20_products_by_default()
     {
@@ -32,10 +34,10 @@ class ProductsTest extends TestCase
     /** @test */
     public function it_should_get_a_product_by_id()
     {
-        $product = $this->theQuestionmarkClient->getProduct(288247);
+        $product = $this->theQuestionmarkClient->getProduct($this->productId);
 
         $this->assertArrayHasKey('id', $product);
-        $this->assertEquals(288247, $product['id']);
+        $this->assertEquals($this->productId, $product['id']);
     }
 
     /** @test */
@@ -49,10 +51,10 @@ class ProductsTest extends TestCase
     /** @test */
     public function it_should_get_a_product_by_a_barcode()
     {
-        $product = $this->theQuestionmarkClient->getProductByBarcode(288247);
+        $product = $this->theQuestionmarkClient->getProductByBarcode($this->productId);
 
         $this->assertArrayHasKey('id', $product);
-        $this->assertEquals(288247, $product['id']);
+        $this->assertEquals($this->productId, $product['id']);
     }
 
     /** @test */
@@ -61,5 +63,31 @@ class ProductsTest extends TestCase
         $this->expectException(ProductNotFoundException::class);
 
         $this->theQuestionmarkClient->getProductByBarcode(123);
+    }
+
+    /** @test */
+    public function it_should_get_20_product_alternatives_by_default()
+    {
+        $products = $this->theQuestionmarkClient->getProductAlternatives($this->productId);
+
+        $this->assertArrayHasKey('products', $products);
+        $this->assertArrayHasKey('total', $products);
+        $this->assertCount(20, $products[ 'products' ]);
+    }
+
+
+    /** @test */
+    public function it_should_get_40_product_alternatives()
+    {
+        $products = $this->theQuestionmarkClient->getProductAlternatives(
+            $this->productId,
+            [
+                'per_page' => 10
+            ]
+        );
+
+        $this->assertArrayHasKey('products', $products);
+        $this->assertArrayHasKey('total', $products);
+        $this->assertCount(10, $products[ 'products' ]);
     }
 }
