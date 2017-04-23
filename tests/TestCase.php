@@ -2,22 +2,36 @@
 
 use Faker\Factory;
 use Faker\Generator;
+use SeBuDesign\TheQuestionmark\Client;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
     /**
-     * The facker object
+     * The faker object
      *
      * @var Generator
      */
     protected $faker;
 
+    /**
+     * The questionmark client
+     *
+     * @var Client
+     */
+    protected $theQuestionmarkClient;
+
+    /**
+     * TestCase constructor.
+     */
     public function __construct()
     {
         parent::__construct();
 
         // Initialise faker library
         $this->faker = Factory::create();
+
+        // Initialise the questionmark client
+        $this->theQuestionmarkClient = new Client();
     }
 
     /**

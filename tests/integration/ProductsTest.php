@@ -7,8 +7,7 @@ class ProductsTest extends TestCase
     /** @test */
     public function it_should_get_20_products_by_default()
     {
-        $theQuestionMarkEndpoint = new Client();
-        $products = $theQuestionMarkEndpoint->getProducts();
+        $products = $this->theQuestionmarkClient->getProducts();
 
         $this->assertArrayHasKey('products', $products);
         $this->assertArrayHasKey('total', $products);
@@ -19,8 +18,7 @@ class ProductsTest extends TestCase
     /** @test */
     public function it_should_get_40_products()
     {
-        $theQuestionMarkEndpoint = new Client();
-        $products = $theQuestionMarkEndpoint->getProducts(
+        $products = $this->theQuestionmarkClient->getProducts(
             [
                 'per_page' => 40
             ]
