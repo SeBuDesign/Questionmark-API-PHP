@@ -30,12 +30,12 @@ trait Products
     /**
      * Get the products per 20 by default
      *
-     * @param integer $id The product id to retrieve
+     * @param integer $productId The product id to retrieve
      * @param array $requestParameters The amount of products per page
      *
      * @return array | null
      */
-    public function getProductAlternatives($id, $requestParameters = [])
+    public function getProductAlternatives($productId, $requestParameters = [])
     {
         if (!isset($requestParameters['per_page'])) {
             $requestParameters['per_page'] = 20;
@@ -43,7 +43,7 @@ trait Products
 
         return $this->formatResponse(
             $this->httpClient->get(
-                "products/{$id}/alternatives", // URI endpoint
+                "products/{$productId}/alternatives", // URI endpoint
                 [
                     'query' => $requestParameters
                 ]
@@ -52,20 +52,20 @@ trait Products
     }
 
     /**
-     * Retrieve a single product by an id
+     * Retrieve a single product by an id or a barcode
      *
-     * @param integer $id The product id to retrieve
+     * @param integer $productIdOrBarcode The product id or barcode to retrieve
      *
      * @throws ProductNotFoundException
      *
      * @return array | null
      */
-    public function getProduct($id)
+    public function getProduct($productIdOrBarcode)
     {
         try {
             $product = $this->formatResponse(
                 $this->httpClient->get(
-                    "products/{$id}" // URI endpoint
+                    "products/{$productIdOrBarcode}" // URI endpoint
                 )
             );
         } catch (\Exception $exception) {
