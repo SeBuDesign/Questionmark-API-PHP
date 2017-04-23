@@ -1,5 +1,7 @@
 <?php namespace SeBuDesign\TheQuestionmark\Tests;
 
+use SeBuDesign\TheQuestionmark\Client;
+
 class ProductsTest extends TestCase
 {
     /** @test */
