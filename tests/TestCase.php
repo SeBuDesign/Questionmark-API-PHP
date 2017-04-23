@@ -2,17 +2,27 @@
 
 use Faker\Factory;
 use Faker\Generator;
-use Dotenv\Dotenv;
+use SeBuDesign\TheQuestionmark\Client;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
     /**
-     * The facker object
+     * The faker object
      *
      * @var Generator
      */
     protected $faker;
 
+    /**
+     * The questionmark client
+     *
+     * @var Client
+     */
+    protected $theQuestionmarkClient;
+
+    /**
+     * TestCase constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -20,9 +30,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
         // Initialise faker library
         $this->faker = Factory::create();
 
-        // Load test configuration
-//        $dotEnv = new Dotenv(__DIR__);
-//        $dotEnv->load();
+        // Initialise the questionmark client
+        $this->theQuestionmarkClient = new Client();
     }
 
     /**
